@@ -1,4 +1,6 @@
-# letcodes-golang
+[toc]
+
+# leetcodes-golang
 just for my study
 
 ## 参考
