@@ -8,3 +8,4 @@
 - [剑指Offer Golang 版](https://github.com/yacen/sword2offer)
 - [牛客网-剑指offer](https://www.nowcoder.com/ta/coding-interviews?page=1)
 - [chx-剑指offer java 版](https://blog.csdn.net/chx0501/article/category/5886715)
+- [极客学院](http://wiki.jikexueyuan.com/project/for-offer/question-thirty-one.html)
