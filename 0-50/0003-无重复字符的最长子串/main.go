@@ -15,7 +15,6 @@ func LengthOfLongestSubstring(s string) int{
 			if jj > i{
 				i = jj
 			}
-
 		}
 
 		currLen := j - i + 1

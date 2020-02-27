@@ -9,7 +9,7 @@ type ListNode struct {
 func removeNthFromEnd(head *ListNode, n int) *ListNode{
 	d, headIsNthFromEnd := getDaddy(head, n)
 
-	if headIsNthFromEnd {
+	if headIsNthFromEnd { // 链的长度等于n
 		// 删除head节点
 		return head.Next
 	}

@@ -77,7 +77,6 @@ func (l *LinkList) CircleNode(n *Node) *Node{
 			return p3
 		}
 	}
-	return nil
 }
 
 // 判断链表是否有环，双指针

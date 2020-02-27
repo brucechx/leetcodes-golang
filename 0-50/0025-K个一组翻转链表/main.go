@@ -1,5 +1,6 @@
 package _025_K个一组翻转链表
 
+import "fmt"
 
 // ListNode 是链接节点
 type ListNode struct {
@@ -39,5 +40,6 @@ func reverse(head, tail *ListNode) (*ListNode, *ListNode) {
 	for cur != nil {
 		curPre, cur, cur.Next = cur, cur.Next, curPre
 	}
+	fmt.Println("head=", head)
 	return tail, head
 }

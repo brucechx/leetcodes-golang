@@ -23,6 +23,23 @@ func TestSwapPairs(t *testing.T){
 	}
 }
 
+// 不足k个也反转
+func TestSwapPairs2(t *testing.T){
+	cases := []struct{
+		l1 *ListNode
+		k int
+		res string
+	}{
+		{initl1(), 3, "321654"},
+		{initl1(), 4, "432165"},
+		{initl2(), 2, "213"},
+	}
+
+	for _, cas := range cases{
+		assert.Equal(t, cas.res, echoList(reverseKGroup2(cas.l1, cas.k)))
+	}
+}
+
 func initl1() *ListNode{
 	n5 := &ListNode{Val:6}
 	n4 := &ListNode{Val:5, Next:n5}

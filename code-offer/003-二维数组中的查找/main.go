@@ -1,7 +1,7 @@
 package _03_二维数组中的查找
 
 
-// 从右上脚开始查找
+// 从右上或者左下开始查找
 func Search(array [][]int, target int) bool{
 	row := len(array)
 	col := len(array[0])

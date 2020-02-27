@@ -7,6 +7,7 @@ type ListNode struct {
 	Next *ListNode
 }
 
+// 逐一两两合并链表
 func merge(lists []*ListNode) *ListNode {
 	length := len(lists)
 	half := length / 2

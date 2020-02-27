@@ -16,7 +16,7 @@ func TestSwapPairs(t *testing.T){
 	}
 
 	for _, cas := range cases{
-		assert.Equal(t, cas.res, echoList(swapPairs(cas.l1)))
+		assert.Equal(t, cas.res, echoList(swapPairs2(cas.l1)))
 	}
 }
 

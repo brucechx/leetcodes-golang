@@ -38,7 +38,4 @@ func LastK(head *Node, k int) *Node{
 		leftNode = leftNode.next
 		rightNode = rightNode.next
 	}
-	return nil
-
-
 }

@@ -2,8 +2,6 @@ package _005_最大回文数
 
 // 中心扩展算法
 
-
-
 func longestPalindrome(s string) string {
 	if s == "" || len(s) < 1{
 		return ""

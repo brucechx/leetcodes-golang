@@ -1,7 +1,9 @@
 [toc]
 
-# leetcodes-golang
+## leetcodes-golang
 just for my study
+
+## [剑指offer](./code-offer/README.md) 
 
 ## 参考
 - [参考1](https://github.com/cch123/leetcode-go)

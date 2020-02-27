@@ -6,14 +6,14 @@ func FindMin(num []int) int{
 	if length <= 0 {
 		panic("nums is null")
 	}
-	// for 场景一
-	index1 := 0 // 没有旋转
+	// for 场景一; 没有旋转
+	index1 := 0
 	index2 := length - 1
 	midIndex := index1
 
 	for num[index1] >= num[index2]{
 		//  如果前一个元素与后一个元素差一位
-		//  说明找到了最大最小的元素
+		//  说明找到了最大最小的元素, 最小元素为指针2
 		// 场景二
 		if index2 - index1 == 1{
 			midIndex = index2
@@ -22,7 +22,7 @@ func FindMin(num []int) int{
 
 		midIndex = (index1 + index2) / 2
 
-		// for 场景三
+		// for 场景三; 无法确定中间元素是属于前面还是后面的递增子数组,只能顺序查找
 		if num[index1] == num[index2] && num[midIndex] == num[index2]{
 			return MinInOrder(num, index1, index2)
 		}
