@@ -21,8 +21,38 @@ func LengthOfLongestSubstring(s string) int{
 		if currLen > res{
 			res = currLen
 		}
-
 		charMap[s[j]] = j + 1
 	}
 	return res
+}
+
+func lengthOfLongestSubstring(s string) int {
+	left, right, res := 0, 0, 0
+	window := make(map[byte]int)
+	for right < len(s){ // 窗口移动直到结束
+		window[s[right]] ++
+		right++
+		if ! isValidWindow(window){
+			tmp := s[left]
+			window[tmp] --
+			left ++
+		}
+		res = max(res, right - left)
+	}
+	return res
+}
+
+func max(a, b int) int{
+	if a > b{
+		return a
+	}
+	return b
+}
+func isValidWindow(window map[byte]int) bool{
+	for _, v := range window{
+		if v > 1{
+			return false
+		}
+	}
+	return true
 }

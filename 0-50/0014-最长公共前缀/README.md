@@ -1,9 +1,6 @@
 [toc]
 
-## 题目 
-- [题目](https://leetcode-cn.com/problems/longest-common-prefix/)
-
-## 描述
+## [题目描述](https://leetcode-cn.com/problems/longest-common-prefix/)
 
 编写一个函数来查找字符串数组中的最长公共前缀。
 
