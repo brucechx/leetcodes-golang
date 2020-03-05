@@ -11,10 +11,24 @@ func TestSubSet(t *testing.T){
 		res [][]int
 	}{
 		{
-			input:[]int{1, 2},
+			input:[]int{1, 2, 3},
+			res: [][]int{
+				{},
+				{1},
+				{1, 2},
+				{1, 2, 3},
+				{1, 3},
+				{2},
+				{2, 3},
+				{3},
+			},
+		},
+		{
+			input:[]int{1, 2, 2},
 		},
 	}
 	for _, cas := range cases{
-		fmt.Println(subsets(cas.input))
+		//fmt.Println(subsets(cas.input))
+		fmt.Println(subset2(cas.input))
 	}
 }
