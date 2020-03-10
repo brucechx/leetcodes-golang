@@ -24,3 +24,27 @@ func TestMySqrt(t *testing.T)  {
 		assert.Equal(t, cas.res, mySqrt(cas.input))
 	}
 }
+
+
+func TestMySqrtFloat32(t *testing.T)  {
+	cases := []struct{
+		input float32
+		e float32
+		res float32
+	}{
+		{
+			input: float32(10),
+			e: 0.01,
+			res: 3.1542969,
+		},
+		{
+			input: float32(4),
+			e: 0.01,
+			res: 1.9921875,
+		},
+	}
+	for _, cas := range cases{
+		//fmt.Println(mySqrtFloat(cas.input, cas.e))
+		assert.Equal(t, cas.res, mySqrtFloat(cas.input, cas.e))
+	}
+}

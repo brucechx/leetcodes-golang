@@ -23,12 +23,9 @@ func TestSubSet(t *testing.T){
 				{3},
 			},
 		},
-		{
-			input:[]int{1, 2, 2},
-		},
 	}
 	for _, cas := range cases{
-		//fmt.Println(subsets(cas.input))
-		fmt.Println(subset2(cas.input))
+		fmt.Println(subsets(cas.input))
+		//fmt.Println(subset2(cas.input))
 	}
 }

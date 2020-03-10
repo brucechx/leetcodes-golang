@@ -1,53 +1,53 @@
 package _103_二叉树的锯齿形层次遍历
 
 import (
+	"fmt"
 	"testing"
-
-	"github.com/stretchr/testify/assert"
 )
 
-func TestZigzagLevelOrder(t *testing.T){
-	cases := []struct{
-		root *TreeNode
-		res [][]int
-	}{
-		{
-			root: mockTree1(),
-			res: [][]int{
-				{3},
-				{20, 9},
-				{15, 7},
-			},
-		},
-	}
-	for _, cas := range cases{
-		assert.Equal(t, cas.res, zigzagLevelOrder(cas.root))
-	}
+func TestPrintTree(t *testing.T){
+	fmt.Println(PrintTreeNew(mockTree()))
 }
 
-
-
-func mockTree1() *TreeNode {
+func mockTree() *TreeNode{
 	root := &TreeNode{
-		Val:   3,
+		Val:   0,
 		Left:  nil,
 		Right: nil,
 	}
 	root.Left = &TreeNode{
-		Val:   9,
+		Val:   1,
+		Left:  &TreeNode{
+			Val:   3,
+			Left:  nil,
+			Right: nil,
+		},
+		Right: &TreeNode{
+			Val:   4,
+			Left:  &TreeNode{
+				Val:   7,
+				Left:  nil,
+				Right: nil,
+			},
+			Right: nil,
+		},
 	}
 	root.Right = &TreeNode{
-		Val:   20,
-		Left:  newTreeNode(15),
-		Right: newTreeNode(7),
+		Val:   2,
+		Left:  &TreeNode{
+			Val:   5,
+			Left:  nil,
+			Right: &TreeNode{
+				Val:   8,
+				Left:  nil,
+				Right: nil,
+			},
+		},
+		Right: &TreeNode{
+			Val:   6,
+			Left:  nil,
+			Right: nil,
+		},
 	}
 	return root
-}
-
-func newTreeNode(val int) *TreeNode {
-	return &TreeNode{
-		Val:   val,
-		Left:  nil,
-		Right: nil,
-	}
 }

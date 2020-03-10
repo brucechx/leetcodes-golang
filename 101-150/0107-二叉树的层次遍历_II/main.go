@@ -8,28 +8,26 @@ type TreeNode struct {
 }
 
 func levelOrderBottom(root *TreeNode) [][]int {
-	var res [][]int
 	if root == nil{
-		return res
+		return [][]int{}
 	}
-	currentLevelNodes := []*TreeNode{root}
-	for len(currentLevelNodes) != 0 {
-		var levelNodes []int
-		var nextLevelNodes []*TreeNode
-		for _, node := range currentLevelNodes{
-			levelNodes = append(levelNodes, node.Val)
+	currentLevel := make([]*TreeNode, 0)
+	currentLevel = append(currentLevel, root)
+	res := make([][]int, 0)
+	for len(currentLevel) != 0 {
+		nextLevel := make([]*TreeNode, 0)
+		currentLevelVal := make([]int, 0)
+		for _, node := range currentLevel{
+			currentLevelVal = append(currentLevelVal, node.Val)
 			if node.Left != nil{
-				nextLevelNodes = append(nextLevelNodes, node.Left)
+				nextLevel = append(nextLevel, node.Left)
 			}
 			if node.Right != nil{
-				nextLevelNodes = append(nextLevelNodes, node.Right)
+				nextLevel = append(nextLevel, node.Right)
 			}
 		}
-		res = append(res, levelNodes)
-		currentLevelNodes = nextLevelNodes
-	}
-	for i:=0; i<len(res)/2; i++{
-		res[i], res[len(res) - i - 1] = res[len(res) - i - 1], res[i]
+		currentLevel = nextLevel
+		res = append([][]int{currentLevelVal}, res...)
 	}
 	return res
 }

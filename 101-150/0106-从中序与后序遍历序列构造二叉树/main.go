@@ -19,21 +19,13 @@ func buildTree(inorder []int, postorder []int) *TreeNode {
 	if len(inorder) == 0 || len(postorder) == 0{
 		return nil
 	}
-	rootVal := postorder[len(postorder) - 1]
-	root := &TreeNode{Val:rootVal}
-
-	rootValIndex := findIndexVal(inorder, rootVal)
+	root := &TreeNode{Val:postorder[len(postorder) - 1]}
+	rootValIndex := findIndexVal(inorder, postorder[len(postorder) - 1])
 	if rootValIndex == -1{
 		return nil
 	}
-	leftTreeInOrder := inorder[:rootValIndex]
-	leftTreePostOrder := postorder[:rootValIndex ]
-
-	rightTreeInOrder := inorder[rootValIndex + 1:]
-	rigthTreePostOrder := postorder[rootValIndex:len(postorder) - 1]
-
-	root.Left = buildTree(leftTreeInOrder, leftTreePostOrder)
-	root.Right = buildTree(rightTreeInOrder, rigthTreePostOrder)
+	root.Left = buildTree(inorder[:rootValIndex], postorder[:rootValIndex])
+	root.Right = buildTree(inorder[rootValIndex + 1:], postorder[rootValIndex:len(postorder) - 1])
 	return root
 }
 

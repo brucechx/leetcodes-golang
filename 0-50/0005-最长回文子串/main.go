@@ -1,5 +1,7 @@
 package _005_最大回文数
 
+import "fmt"
+
 // 中心扩展算法
 
 func longestPalindrome(s string) string {
@@ -19,6 +21,7 @@ func longestPalindrome(s string) string {
 			start = i - (length - 1) / 2
 			end = i + length / 2
 		}
+		fmt.Println(i, " length=", length, " start=", start, " end=", end)
 	}
 	return s[start:end+1]
 }
@@ -39,5 +42,6 @@ func expandAroundCenter(s string, left, right int) int{
 		l --
 		r ++
 	}
+	fmt.Println("r=", r, " l=", l)
 	return r - l - 1
 }

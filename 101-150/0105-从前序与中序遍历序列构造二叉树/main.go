@@ -12,30 +12,24 @@ type TreeNode struct {
 */
 
 func buildTree(preorder []int, inorder []int) *TreeNode {
-	if len(preorder) == 0 || len(inorder) == 0 {
+	if len(inorder) == 0{
 		return nil
 	}
-	rootVal := preorder[0]
 	root := &TreeNode{
-		Val:   rootVal,
+		Val: preorder[0],
 	}
-	midRootIndex := findIndexVal(inorder, rootVal)
-	if midRootIndex == -1{
+	rootIndex := findIndex(inorder, preorder[0])
+	if rootIndex == -1{
 		return nil
 	}
-	leftTreeNodes := midRootIndex
-	leftTreePreOrder := preorder[1:leftTreeNodes + 1]
-	leftTreeInOrder := inorder[0:midRootIndex]
-	rightTreePreOrder := preorder[leftTreeNodes+1:]
-	rightTreeInOrder := inorder[midRootIndex+1:]
-	root.Left = buildTree(leftTreePreOrder, leftTreeInOrder)
-	root.Right = buildTree(rightTreePreOrder, rightTreeInOrder)
+	root.Left = buildTree(preorder[1:rootIndex+1], inorder[:rootIndex])
+	root.Right = buildTree(preorder[rootIndex+1:], inorder[rootIndex+1:])
 	return root
 }
 
-func findIndexVal(order []int, target int) int{
-	for i, val := range order{
-		if val == target{
+func findIndex(order []int, target int) int{
+	for i, v := range order{
+		if v == target{
 			return i
 		}
 	}

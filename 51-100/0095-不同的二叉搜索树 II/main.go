@@ -1,52 +1,5 @@
 package main
 
-import "fmt"
-
-/*
- * @lc app=leetcode.cn id=95 lang=golang
- *
- * [95] 不同的二叉搜索树 II
- *
- * https://leetcode-cn.com/problems/unique-binary-search-trees-ii/description/
- *
- * algorithms
- * Medium (51.19%)
- * Total Accepted:    3.8K
- * Total Submissions: 7.4K
- * Testcase Example:  '3'
- *
- * 给定一个整数 n，生成所有由 1 ... n 为节点所组成的二叉搜索树。
- *
- * 示例:
- *
- * 输入: 3
- * 输出:
- * [
- * [1,null,3,2],
- * [3,2,null,1],
- * [3,1,null,null,2],
- * [2,1,3],
- * [1,null,2,null,3]
- * ]
- * 解释:
- * 以上的输出对应以下 5 种不同结构的二叉搜索树：
- *
- * ⁠  1         3     3      2      1
- * ⁠   \       /     /      / \      \
- * ⁠    3     2     1      1   3      2
- * ⁠   /     /       \                 \
- * ⁠  2     1         2                 3
- *
- *
- */
-/**
- * Definition for a binary tree node.
- * type TreeNode struct {
- *     Val int
- *     Left *TreeNode
- *     Right *TreeNode
- * }
- */
 type TreeNode struct {
 	Val int
 	Left *TreeNode
@@ -55,93 +8,75 @@ type TreeNode struct {
 
 func generateTrees(n int) []*TreeNode {
 	var res []*TreeNode
-
 	if n <= 0 {
 		return res
 	}
-
-	// 所有符合条件的二叉树的 inorder 是一样的。
-	in := make([]int, n)
-	for i := range in {
-		in[i] = i + 1
+	// 所有可能的中序遍历均一致
+	inOrder := make([]int, n, n)
+	for i:=1; i<=n; i++{
+		inOrder[i-1] = i
 	}
-
-	// 利用 inorder 生成所有可能的 preorder
-	pres := getPres(in)
-
-	// 利用 preorder 和 inorder 生成 二叉树
-	for _, pre := range pres {
-		temp := preIn2Tree(pre, in)
-		res = append(res, temp)
+	// 基于中序遍历获取所有的前序遍历结果
+	allPreOrder := getPreOrderByInOrder(inOrder)
+	for _, preOrder := range allPreOrder{
+		treeNode := rebuildTree(preOrder, inOrder)
+		res = append(res, treeNode)
 	}
-
 	return res
 }
 
-func getPres(in []int) [][]int {
-	size := len(in)
-	if size <= 1 {
-		return [][]int{in}
+func getPreOrderByInOrder(inOrder []int) [][]int{
+	n := len(inOrder)
+	if n <= 1{
+		return [][]int{inOrder}
 	}
-
-	if size == 2 {
+	if n == 2{
 		return [][]int{
-			[]int{in[1], in[0]},
-			[]int{in[0], in[1]},
+			{inOrder[1], inOrder[0]},
+			{inOrder[0], inOrder[1]},
 		}
 	}
-
-	res := [][]int{}
-	for i := 0; i < size; i++ {
-		// 以 in[i] 为 root
-		// 获取 in[i] 左侧的 preorder
-		ls := getPres(in[:i])
-		// 获取 in[i] 右侧的 preorder
-		rs := getPres(in[i+1:])
-		for _, l := range ls {
-			for _, r := range rs {
-				temp := make([]int, 1, size)
-				// in[i] 为 root，所以，应该在 0 位
-				temp[0] = in[i]
-				temp = append(temp, l...)
-				temp = append(temp, r...)
-				// 汇总结果
-				res = append(res, temp)
+	res := make([][]int, 0)
+	for i:=0; i<n; i++{
+		ls := getPreOrderByInOrder(inOrder[:i])
+		rs := getPreOrderByInOrder(inOrder[i+1:])
+		for _, l := range ls{
+			for _, r := range rs{
+				tmp := make([]int, 1, n)
+				tmp[0] = inOrder[i]
+				tmp = append(tmp, l...)
+				tmp = append(tmp, r...)
+				res = append(res, tmp)
 			}
 		}
 	}
-
 	return res
 }
 
-func preIn2Tree(pre, in []int) *TreeNode {
-	if len(in) == 0 {
+
+func rebuildTree(preOrder, inOrder []int) *TreeNode{
+	if len(inOrder) == 0 || len(preOrder) == 0{
 		return nil
 	}
-
-	res := &TreeNode{
-		Val: pre[0],
+	root := &TreeNode{
+		Val:   preOrder[0],
+		Left:  nil,
+		Right: nil,
 	}
-
-	if len(in) == 1 {
-		return res
+	rootIndex := findIndex(inOrder, preOrder[0])
+	if rootIndex == -1{
+		return nil
 	}
-
-	idx := indexOf(res.Val, in)
-
-	res.Left = preIn2Tree(pre[1:idx+1], in[:idx])
-	res.Right = preIn2Tree(pre[idx+1:], in[idx+1:])
-
-	return res
+	root.Left = rebuildTree(preOrder[1:rootIndex+1], inOrder[:rootIndex])
+	root.Right = rebuildTree(preOrder[rootIndex+1:], inOrder[rootIndex+1:])
+	return root
 }
 
-func indexOf(val int, nums []int) int {
-	for i, v := range nums {
-		if v == val {
+func findIndex(order []int, target int) int{
+	for i, v := range order{
+		if v == target{
 			return i
 		}
 	}
-
-	msg := fmt.Sprintf("%d 不存在于 %v 中", val, nums)
-	panic(msg)
+	return -1
 }
