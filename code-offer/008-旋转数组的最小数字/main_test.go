@@ -15,8 +15,8 @@ func TestFindMin(t *testing.T) {
 		{[]int{1, 0, 1, 1, 1}, 0}, // 场景三： 特殊
 	}
 	for _, cas := range cases{
-		//got := FindMin(cas.input)
-		got := findMin(cas.input)
+		got := FindMin(cas.input)
+		//got := findMin(cas.input)
 		assert.Equal(t, cas.target, got)
 	}
 }

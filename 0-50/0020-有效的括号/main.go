@@ -14,6 +14,9 @@ func isValid(str string) bool{
 			stack = append(stack, v)
 			continue
 		}
+		if len(stack) == 0 {
+			return false
+		}
 		// 闭括号，与栈顶比较，
 		stackTop := stack[len(stack) - 1]
 		stack = stack[: len(stack) - 1]

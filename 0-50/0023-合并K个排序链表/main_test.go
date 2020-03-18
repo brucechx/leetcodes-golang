@@ -15,7 +15,7 @@ func TestMergeKList(t *testing.T){
 	}
 
 	for _, cas := range cases{
-		assert.Equal(t, cas.res, echoList(merge(cas.l)))
+		assert.Equal(t, cas.res, echoList(mergeKLists2(cas.l)))
 	}
 }
 

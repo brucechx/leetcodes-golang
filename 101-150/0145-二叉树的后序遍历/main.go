@@ -12,53 +12,49 @@ type TreeNode struct {
 */
 
 func postorderTraversal(root *TreeNode) []int {
-	inputStack := NewStack()
-	outputStack := NewStack()
-
-	var res []int
-	if root == nil{
-		return res
-	}
-
-	for root != nil || ! inputStack.IsEmpty(){
+	inStack := NewStack()
+	outStack := NewStack()
+	for root != nil || ! inStack.isEmpty(){
 		if root != nil{
-			inputStack.Push(root)
-			outputStack.Push(root)
+			inStack.Put(root)
+			outStack.Put(root)
 			root = root.Right
-		}else {
-			tmp := inputStack.Pop().(*TreeNode)
-			root = tmp.Left
+		}else{
+			root = inStack.Pop()
+			root = root.Left
 		}
 	}
-
-	for ! outputStack.IsEmpty(){
-		node := outputStack.Pop().(*TreeNode)
-		if node == nil{
-			continue
-		}
+	res := make([]int, 0)
+	for ! outStack.isEmpty(){
+		node := outStack.Pop()
 		res = append(res, node.Val)
 	}
 	return res
 }
 
-
-type Stack struct {
-	Val []interface{}
+type Stack struct{
+	data []*TreeNode
 }
 
 func NewStack() *Stack{
-	return &Stack{Val:make([]interface{}, 0)}
-}
-func (s *Stack)Push(val interface{}){
-	s.Val = append(s.Val, val)
-}
-
-func (s *Stack)Pop() interface{}{
-	tmp := s.Val[len(s.Val) - 1]
-	s.Val = s.Val[:len(s.Val) - 1]
-	return tmp
+	return &Stack{
+		data: make([]*TreeNode, 0),
+	}
 }
 
-func (s *Stack)IsEmpty() bool{
-	return len(s.Val) == 0
+func (s *Stack) Put(node *TreeNode){
+	s.data = append(s.data, node)
+}
+
+func (s *Stack) Pop() *TreeNode{
+	if len(s.data) == 0{
+		return nil
+	}
+	val := s.data[len(s.data) - 1]
+	s.data = s.data[: len(s.data) - 1]
+	return val
+}
+
+func (s *Stack) isEmpty() bool{
+	return len(s.data) == 0
 }
