@@ -7,7 +7,7 @@ import (
 
 func TestPartition(t *testing.T){
 	mocklist := mockList()
-	newHead := partition2(mocklist, 3)
+	newHead := partition(mocklist, 3)
 	for newHead != nil{
 		fmt.Println(newHead.Val)
 		newHead = newHead.Next

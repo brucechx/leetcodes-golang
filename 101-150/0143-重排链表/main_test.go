@@ -11,7 +11,7 @@ func TestReorderList(t *testing.T){
 		},
 	}
 	for _, cas := range cases{
-		reorderList(cas.head)
+		reorderList2(cas.head)
 	}
 }
 

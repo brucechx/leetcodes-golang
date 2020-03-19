@@ -1,6 +1,8 @@
 package _143_重排链表
 
-import "fmt"
+import (
+	"fmt"
+)
 
 type ListNode struct {
 	Val int
@@ -23,7 +25,8 @@ func reorderList(head *ListNode)  {
 }
 
 func merge(l0, l1 *ListNode) *ListNode{
-	res := &ListNode{}
+	head := &ListNode{}
+	res := head
 	for {
 		if l0 == nil && l1 == nil{
 			break
@@ -45,7 +48,7 @@ func merge(l0, l1 *ListNode) *ListNode{
 			res = res.Next
 		}
 	}
-	return res.Next
+	return head.Next
 }
 
 func splitList(head *ListNode) (halfNode *ListNode){
