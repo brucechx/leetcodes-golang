@@ -12,25 +12,22 @@ var m = map[byte][]string{
 }
 
 func letterCombinations(digits string) []string {
+	res := make([]string, 0)
 	if digits == "" {
-		return nil
+		return res
 	}
+	dfs(&res, 0, "", digits)
+	return res
+}
 
-	ret := []string{""}
-
-	// 让digits中所有的数字都有机会进行迭代。
-	for i := 0; i < len(digits); i++ {
-		var temp []string
-		// 让ret中的每个元素都能添加新的字母。
-		for j := 0; j < len(ret); j++ {
-			// 把digits[i]所对应的字母，多次添加到ret[j]的末尾
-			for k := 0; k < len(m[digits[i]]); k++ {
-				temp = append(temp, ret[j]+m[digits[i]][k])
-			}
-		}
-
-		ret = temp
+// 类似全排列
+func dfs(res *[]string, index int, path, digits string){
+	if index == len(digits){
+		*res = append(*res, path)
+		return
 	}
-
-	return ret
+	letters := m[digits[index]]
+	for _, l := range letters{
+		dfs(res, index+1, path+l, digits)
+	}
 }

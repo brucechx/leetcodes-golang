@@ -1,7 +1,6 @@
 [toc]
 
-## 题目
-- [题目](https://leetcode-cn.com/problems/search-in-rotated-sorted-array/)
+## [题目描述](https://leetcode-cn.com/problems/search-in-rotated-sorted-array/)
 
 ## 题目描述
 

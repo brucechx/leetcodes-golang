@@ -24,4 +24,5 @@
 输出: [-1,-1]
 ```
 
-
+## 参考
+- [参考](https://leetcode-cn.com/problems/find-first-and-last-position-of-element-in-sorted-array/solution/er-fen-cha-zhao-suan-fa-xi-jie-xiang-jie-by-labula/)

@@ -1,12 +1,16 @@
 package _016_最接近的三数之和
 
 import (
-	"sort"
 	"math"
+	"sort"
 )
 
+/*
+	排序 & 双指针法
+*/
+
 func threeSumClosest(nums []int, target int) int{
-	// 排序后，可以按规律查找
+	// 排序
 	sort.Ints(nums)
 	res, delta := 0, math.MaxInt64
 
@@ -20,6 +24,7 @@ func threeSumClosest(nums []int, target int) int{
 		for l < r{
 			s := nums[i] + nums[l] + nums[r]
 			switch {
+			// 因为已经排序，和小则左子针进位
 			case s < target:
 				l++
 				if delta > target - s{

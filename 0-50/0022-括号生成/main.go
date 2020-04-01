@@ -6,6 +6,10 @@ func generateParenthesis(n int) []string {
 	return res
 }
 
+/*
+	回溯法
+
+ */
 func dfs(s string, left, right, n int, res *[]string){
 	if len(s) == 2*n{
 		*res = append(*res, s)

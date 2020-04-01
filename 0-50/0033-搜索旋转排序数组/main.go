@@ -1,5 +1,6 @@
 package _033_搜索旋转排序数组
 
+// 二分查找
 func solution(nums []int, target int) int{
 	l, r := 0, len(nums) - 1
 	mid := l + (r - l) / 2

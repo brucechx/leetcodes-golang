@@ -1,14 +1,11 @@
 package _027_移除元素
 
-// 方法一
+// 原地置换
 func removeElement(nums []int, target int) int{
-	if len(nums) == 0{
-		return 0
-	}
 	i := 0
-	for j:=0; j<len(nums); j++{
-		if nums[j] != target{
-			nums[i] = nums[j]
+	for _, num := range nums{
+		if num != val{
+			nums[i] = num
 			i++
 		}
 	}

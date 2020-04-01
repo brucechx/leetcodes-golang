@@ -3,9 +3,9 @@ package _014_最长公共前缀
 func longestCommonPrefix(strs []string) string{
 	short := shortest(strs)
 	for i, r := range short{
-		for j :=0; j < len(strs); j++{
+		for j := range strs{
 			if strs[j][i] != byte(r){
-				return strs[j][:i]
+				return short[:i]
 			}
 		}
 	}
