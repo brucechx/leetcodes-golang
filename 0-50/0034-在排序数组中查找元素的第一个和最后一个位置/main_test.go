@@ -29,6 +29,6 @@ func TestSolution(t *testing.T)  {
 		},
 	}
 	for _, cas := range cases{
-		assert.Equal(t, cas.res, solution(cas.input, cas.target))
+		assert.Equal(t, cas.res, searchRange(cas.input, cas.target))
 	}
 }

@@ -24,26 +24,39 @@ type ans struct {
 	one bool
 }
 
-func Test_Problem0036(t *testing.T) {
+func Test_IsValidSudoku(t *testing.T) {
 	ast := assert.New(t)
 
 	qs := []question{
-
-		question{
-			para{[][]byte{
-				[]byte(".87654321"),
-				[]byte("2........"),
-				[]byte("3........"),
-				[]byte("4........"),
-				[]byte("5........"),
-				[]byte("6........"),
-				[]byte("7........"),
-				[]byte("8........"),
-				[]byte("9........"),
+		//question{
+		//	para{[][]byte{
+		//		[]byte(".87654321"),
+		//		[]byte("2........"),
+		//		[]byte("3........"),
+		//		[]byte("4........"),
+		//		[]byte("5........"),
+		//		[]byte("6........"),
+		//		[]byte("7........"),
+		//		[]byte("8........"),
+		//		[]byte("9........"),
+		//	}},
+		//	ans{true},
+		//},
+		{
+			para: para{[][]byte{
+				//,[".",".",".",".","8",".",".","7","9"]]
+				[]byte("83..7...."),
+				[]byte("6..195..."),
+				[]byte(".98....6."),
+				[]byte("8...6...3"),
+				[]byte("4..8.3..1"),
+				[]byte("7...2...6"),
+				[]byte("..6...28."),
+				[]byte("...419..5"),
+				[]byte("....8..79"),
 			}},
-			ans{true},
+			ans:  ans{false},
 		},
-
 		question{
 			para{[][]byte{
 				[]byte(".87654321"),

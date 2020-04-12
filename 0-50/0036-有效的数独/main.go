@@ -78,9 +78,11 @@ func isValidSudokuPod(board [][]byte, pod int) bool {
 	return true
 }
 
+
 func convertToNumber(b byte) int {
 	if b == '.' {
 		return -1
 	}
 	return int(b - '0')
 }
+

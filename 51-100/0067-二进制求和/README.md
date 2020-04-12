@@ -12,3 +12,11 @@
 
 输入: a = "1010", b = "1011"
 输出: "10101"
+
+## 位运算练习
+- [137_只出现一次的数字_II](https://leetcode-cn.com/problems/single-number-ii/)
+- [260_只出现一次的数字_III](https://leetcode-cn.com/problems/single-number-iii/)
+
+## 参考
+- [参考](https://leetcode-cn.com/problems/add-binary/solution/er-jin-zhi-qiu-he-by-leetcode/)
+

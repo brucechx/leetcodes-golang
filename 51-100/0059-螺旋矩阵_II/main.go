@@ -1,48 +1,52 @@
 package _059_螺旋矩阵_II
 
-func generateMatrix(n int) [][]int {
+/*
+	向内旋转
+
+*/
+
+func generateMatrix(n int) [][]int{
 	if n == 0 {
 		return nil
 	}
-
-	res := make([][]int, n)
-	for i := range res {
-		res[i] = make([]int, n)
+	target := n * n
+	left, right, top, bottom := 0, n-1, 0, n-1
+	num := 1
+	matrix := initMatrix(n)
+	// 不用left<right || top < bottom 是因为当n 为奇数时，中间点无法填充
+	for num <= target{
+		// left --> right
+		for i:=left; i<=right; i++{
+			matrix[top][i] = num
+			num++
+		}
+		top++
+		// top --> bottom
+		for i:=top; i<=bottom; i++{
+			matrix[i][right] = num
+			num++
+		}
+		right--
+		// right --> left
+		for i:=right; i>=left; i--{
+			matrix[bottom][i] = num
+			num++
+		}
+		bottom--
+		// bottom --> top
+		for i:=bottom; i>=top; i--{
+			matrix[i][left] = num
+			num++
+		}
+		left++
 	}
-
-	max := n * n
-	next := nextFunc(n)
-
-	for i := 1; i <= max; i++ {
-		x, y := next()
-		res[x][y] = i
-	}
-
-	return res
+	return matrix
 }
 
-func nextFunc(n int) func() (int, int) {
-	top, down := 0, n-1
-	left, right := 0, n-1
-	x, y := 0, -1
-	dx, dy := 0, 1
-	return func() (int, int) {
-		x += dx
-		y += dy
-		switch {
-		case y+dy > right:
-			top++
-			dx, dy = 1, 0
-		case x+dx > down:
-			right--
-			dx, dy = 0, -1
-		case y+dy < left:
-			down--
-			dx, dy = -1, 0
-		case x+dx < top:
-			left++
-			dx, dy = 0, 1
-		}
-		return x, y
+func initMatrix(n int) [][]int{
+	matrix := make([][]int, n)
+	for i:=0; i<n; i++{
+		matrix[i] = make([]int, n)
 	}
+	return matrix
 }

@@ -1,0 +1,15 @@
+package _048_选择图像
+
+import "testing"
+
+
+func TestRotate(t *testing.T){
+	matrix := [][]int{
+		{1, 2, 3},
+		{4, 5, 6},
+		{7, 8, 9},
+	}
+
+
+	rotate(matrix)
+}
