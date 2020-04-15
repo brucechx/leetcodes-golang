@@ -3,8 +3,8 @@ package _033_搜索旋转排序数组
 // 二分查找
 func solution(nums []int, target int) int{
 	l, r := 0, len(nums) - 1
-	mid := l + (r - l) / 2
 	for l <= r {
+		mid := l + (r - l) / 2
 		if nums[mid] == target{
 			return mid
 		}
@@ -21,7 +21,6 @@ func solution(nums []int, target int) int{
 				r = mid - 1
 			}
 		}
-		mid = l + (r - l) / 2
 	}
 	return -1
 }

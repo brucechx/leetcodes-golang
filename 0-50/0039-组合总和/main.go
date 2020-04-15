@@ -1,44 +1,34 @@
 package _039_组合总和
 
-import "fmt"
+import "sort"
 
+// 回溯法
 func combinationSum(candidates []int, target int) [][]int {
-	fmt.Println(candidates, target)
-	if target == 0 {
-		return [][]int{{}}
+	res := make([][]int, 0)
+	if len(candidates) == 0{
+		return res
 	}
+	path := make([]int, 0)
+	sort.Ints(candidates) // 需要排好序
+	dfs(candidates, target, 0, path, &res)
+	return res
+}
 
-	if len(candidates) == 0 {
-		// 无解
-		return nil
+func dfs(candidates []int, target int, begin int, path []int, res *[][]int){
+	if target == 0{
+		tmp := make([]int, len(path))
+		copy(tmp, path)
+		*res = append(*res, tmp)
+		return
 	}
-
-	if len(candidates) == 1 {
-		if target%candidates[0] == 0 {
-			var result []int
-			for i := 0; i < (target / candidates[0]); i++ {
-				result = append(result, candidates[0])
-			}
-			return [][]int{result}
+	for i:=begin; i< len(candidates); i++{
+		// 剪枝
+		if target - candidates[i] < 0{
+			break
 		}
-
-		// 无解
-		return nil
+		path = append(path, candidates[i])
+		dfs(candidates, target-candidates[i], i, path, res)
+		// 回溯
+		path = path[:len(path)-1]
 	}
-
-	var result [][]int
-	for i := 0; i <= target/candidates[0]; i++ {
-		subResult := combinationSum(candidates[1:], target-i*candidates[0])
-		if subResult != nil {
-			// [][]int{}
-			// 里的每个数组都追加上当前的 candidate 0 即可
-			for j := 0; j < len(subResult); j++ {
-				for k := 0; k < i; k++ {
-					subResult[j] = append(subResult[j], candidates[0])
-				}
-				result = append(result, subResult[j])
-			}
-		}
-	}
-	return result
 }

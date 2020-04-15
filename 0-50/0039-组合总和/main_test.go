@@ -1,4 +1,4 @@
-package _040_组合总和_II
+package _039_组合总和
 
 import (
 	"testing"
@@ -16,7 +16,7 @@ func TestSolution(t *testing.T){
 			input:[]int{2, 3, 6, 7},
 			target:7,
 			res:[][]int{
-				//{2, 2, 3},
+				{2, 2, 3},
 				{7},
 			},
 		},
@@ -24,7 +24,7 @@ func TestSolution(t *testing.T){
 			input:[]int{8, 7, 4, 3},
 			target:11,
 			res:[][]int{
-				//{3, 4, 4},
+				{3, 4, 4},
 				{3, 8},
 				{4, 7},
 			},

@@ -6,6 +6,7 @@ func groupAnagrams(strs []string) [][]string {
 	groups := make(map[string][]string)
 	for _, str := range strs {
 		b := []byte(str)
+		// 字节排序
 		sort.Slice(b, func(i, j int) bool {
 			return b[i] < b[j]
 		})
