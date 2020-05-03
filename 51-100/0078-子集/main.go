@@ -1,15 +1,5 @@
 package _078_子集
 
-func subsets(nums []int) [][]int {
-	res := make([][]int, 1, 1024)
-	for _, n := range nums{
-		for _, r := range res{
-			res = append(res, append([]int{n}, r...))
-		}
-	}
-	return res
-}
-
 /*
 result = []
 def backtrack(路径, 选择列表):
@@ -23,8 +13,7 @@ def backtrack(路径, 选择列表):
         撤销选择
  */
 
-
-func subset2(nums []int) [][]int{
+func subsets(nums []int) [][]int{
 	res := make([][]int, 0)
 	path := make([]int, 0)
 	dfs(nums, &res, path, 0)

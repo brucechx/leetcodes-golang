@@ -1,5 +1,6 @@
 package _060_第k个排列
 
+// 康托编码
 func getPermutation(n int, k int) string {
 	if n == 0 {
 		return ""

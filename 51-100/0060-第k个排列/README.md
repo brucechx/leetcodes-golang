@@ -31,3 +31,6 @@
 - 全排列
 - 第k个排列
 - 下一个排列
+
+# 参考
+- [参考](https://leetcode-cn.com/problems/permutation-sequence/solution/kang-tuo-bian-ma-by-rayyi-2/)

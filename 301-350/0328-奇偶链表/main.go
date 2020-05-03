@@ -11,8 +11,10 @@ func oddEvenList(head *ListNode) *ListNode {
 	}
 
 	// oe: odd end 指向 odd group 的最后一个 node
+	// 奇数
 	oe := head
 	// eb: even begin 指向 even group 的第一个 node
+	// 偶数
 	eb := head.Next
 	// ee: even end 指向 even group 的最后一个 node
 	ee := eb

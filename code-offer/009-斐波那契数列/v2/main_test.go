@@ -13,7 +13,7 @@ func TestFib(t *testing.T) {
 	}
 
 	for _, cas := range cases{
-		got := Fib(cas.input)
+		got := Fib2(cas.input)
 		want := cas.output
 		if got != want {
 			t.Errorf("got %d want %d", got, want)
