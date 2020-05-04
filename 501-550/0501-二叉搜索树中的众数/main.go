@@ -1,4 +1,4 @@
-package _01_二叉搜索树中的众数
+package _501_二叉搜索树中的众数
 
 type TreeNode struct {
 	     Val int
