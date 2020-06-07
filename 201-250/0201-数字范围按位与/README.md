@@ -12,3 +12,6 @@
 输入: [0,1]
 输出: 0
 ```
+
+# 参考
+- [题解](https://leetcode.wang/leetcode-201-Bitwise-AND-of-Numbers-Range.html)

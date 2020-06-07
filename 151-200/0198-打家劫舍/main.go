@@ -1,17 +1,23 @@
 package _198_打家劫舍
 
+// 动态规划
+/*
+f(k):前k个房屋的最大值； Ai: 第i个房屋的最大值
+
+f(k) = max(f(k-2)+Ak, f(k-1))
+- 抢第k个Ak;
+- 不抢第k个
+*/
+
 func rob(nums []int) int {
-	l := len(nums)
-	if l == 0{
-		return 0
+	preMax := 0 // f(k-2) + Ak
+	currMax := 0 // f(k-1)
+	for _, num := range nums{
+		tmp := currMax
+		currMax = max(preMax+num, currMax)
+		preMax = tmp
 	}
-	dp := make([]int, l+1)
-	dp[0] = 0
-	dp[1] = nums[0]
-	for i:=2; i<= l; i++{
-		dp[i] = max(dp[i-1], dp[i-2]+ nums[i-1])
-	}
-	return dp[l]
+	return currMax
 }
 
 func max(a, b int) int {
